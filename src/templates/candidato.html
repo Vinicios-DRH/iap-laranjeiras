@@ -1,0 +1,331 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="d-flex" style="height: 100vh;" id="backprincipal">
+    <!-- Sidebar -->
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+            <span class="fs-4">Champions Tournament</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="{{ url_for('candidato') }}" class="nav-link active" aria-current="page">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#home"></use>
+                    </svg>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#pagamentoModal">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#speedometer2"></use>
+                    </svg>
+                    Pagamento
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+               id="dropdownUser1"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                <strong>{{ current_user.nome_responsavel }}</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="#">Configurações</a></li>
+                <li><a class="dropdown-item" href="#">Perfil</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Sair</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="flex-grow-1 p-4">
+        <h2 style="color: #fff; text-align: center;">ÁREA DO TIME</h2>
+
+        <div class="py-3 py-md-4 p-xl-5">
+            <div class="container">
+                <div class="row">
+                    <div class="row justify-content-center" style="margin: auto;">
+                        <div class="col-12"
+                             data-aos="fade-up" data-aos-duration="1000">
+                            <div class="card border border-light-subtle rounded-3 shadow-sm transparent-card">
+                                <div class="card-body p-3 p-md-4 p-xl-5">
+                                    <form method="POST">
+                                        {{ form_inscricao.csrf_token }}
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.nome_equipe.label(class="form-label") }}
+                                                    {% if form_inscricao.nome_equipe.errors %}
+                                                    {{ form_inscricao.nome_equipe(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.nome_equipe.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.nome_equipe(class="form-control", disabled=True)
+                                                    }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_1.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_1.errors %}
+                                                    {{ form_inscricao.jogador_1(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_1.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_1(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_2.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_2.errors %}
+                                                    {{ form_inscricao.jogador_2(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_2.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_2(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_3.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_3.errors %}
+                                                    {{ form_inscricao.jogador_3(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_3.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_3(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_4.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_4.errors %}
+                                                    {{ form_inscricao.jogador_4(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_4.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_4(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_5.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_5.errors %}
+                                                    {{ form_inscricao.jogador_5(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_5.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_5(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_6.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_6.errors %}
+                                                    {{ form_inscricao.jogador_6(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_6.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_6(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_7.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_7.errors %}
+                                                    {{ form_inscricao.jogador_7(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_7.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_7(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_8.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_8.errors %}
+                                                    {{ form_inscricao.jogador_8(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_8.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_8(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_9.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_9.errors %}
+                                                    {{ form_inscricao.jogador_9(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_9.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_9(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    {{ form_inscricao.jogador_10.label(class="form-label") }}
+                                                    {% if form_inscricao.jogador_10.errors %}
+                                                    {{ form_inscricao.jogador_10(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form_inscricao.jogador_10.errors %}
+                                                        {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form_inscricao.jogador_10(class="form-control", disabled=True) }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal de Pagamento -->
+<div class="modal fade" id="pagamentoModal" tabindex="-1" aria-labelledby="pagamentoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pagamentoModalLabel">Escolha a forma de pagamento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Escolha uma opção para realizar o pagamento:</p>
+                <button class="btn btn-primary w-100 mb-2" onclick="mostrarQRCode('parcela')">
+                    Pagar primeira parcela da inscrição
+                </button>
+                <button class="btn btn-success w-100" onclick="mostrarQRCode('integral')">
+                    Pagar o valor integral da inscrição
+                </button>
+
+                <!-- Área do QR Code -->
+                <div id="qrCodeContainer" class="mt-4 d-none">
+                    <p>Escaneie o QR Code abaixo para efetuar o pagamento:</p>
+                    <img id="qrCodeImage" src="" alt="QR Code" class="img-fluid">
+                </div>
+
+                <!-- Área de Upload -->
+                <div id="uploadContainer" class="mt-3 d-none">
+                    <label for="arquivoComprovante" class="form-label">Envie o comprovante:</label>
+                    <input type="file" id="arquivoComprovante" class="form-control">
+                    <button class="btn btn-warning w-100 mt-2" onclick="enviarComprovante()">Enviar Comprovante</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let tipoPagamento = '';
+
+    function mostrarQRCode(tipo) {
+        let qrCodeImage = document.getElementById("qrCodeImage");
+        let qrCodeContainer = document.getElementById("qrCodeContainer");
+        let uploadContainer = document.getElementById("uploadContainer");
+
+        tipoPagamento = tipo; // Armazena se é 'parcela' ou 'integral'
+
+        if (tipo === 'parcela') {
+            qrCodeImage.src = "/static/img/100.jpg";
+        } else {
+            qrCodeImage.src = "/static/img/200.jpg";
+        }
+
+        qrCodeContainer.classList.remove("d-none");
+        uploadContainer.classList.remove("d-none");
+    }
+
+    function enviarComprovante() {
+        let arquivo = document.getElementById("arquivoComprovante").files[0];
+
+        if (!arquivo) {
+            alert("Por favor, selecione um arquivo.");
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("arquivo", arquivo);
+        formData.append("parcela", tipoPagamento);
+
+        fetch('/upload_comprovante', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.mensagem);
+            if (data.status === "sucesso") {
+                window.location.reload();
+            }
+        })
+        .catch(error => console.error('Erro no envio:', error));
+    }
+</script>
+
+
+{% endblock %}

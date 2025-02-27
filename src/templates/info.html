@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block head %}
+<!-- Biblioteca AOS para animações -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        AOS.init();
+    });
+</script>
+
+<style>
+    .floating-button {
+        position: fixed;
+        bottom: 30px;
+        left: 20px;
+        z-index: 9999;
+    }
+
+    .floating-button .btn {
+        padding: 15px 25px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 50px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .floating-button .btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+{% endblock %}
+
+{% block body %}
+<section id="inscricao" class="py-3 py-md-4 p-xl-5">
+    <div class="py-3 py-md-4 p-xl-5">
+        <div class="container">
+            <div class="row">
+                <div class="justify-content-center">
+                    <div class="form-header" style="text-align: center;" data-aos="fade-down" data-aos-duration="1000">
+                        <h2>Champions TOURNAMENT</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="margin: auto;">
+                    <div class="col-12"
+                         data-aos="fade-up" data-aos-duration="1000">
+                        <div class="card border border-light-subtle rounded-3 shadow-sm transparent-card">
+                            <div class="card-body p-3 p-md-4 p-xl-5">
+                                <p style="text-align: justify;">O <strong>Tournament Adventista da Promessa Parque das
+                                    Laranjeiras</strong> é um
+                                    torneio organizado
+                                    pelo Ministério de Jovens (MJ) em parceria com os ministérios locais da IAP e tem
+                                    como principal objetivo, arrecadar recursos para investimento de demandas como:
+                                    Melhorar a aparelhagem de som, acústica e ajudar em reparos internos e externos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3"
+                         data-aos="fade-up" data-aos-duration="1000">
+                        <div class="card border border-light-subtle rounded-3 shadow-sm transparent-card">
+                            <div class="card-body p-3 p-md-4 p-xl-5">
+                                <p style="text-align: justify;">O torneio vai reunir equipes formados por membros das
+                                    igrejas filiadas e pessoas
+                                    externas da congregação, com partidas disputadas em uma quadra de esporte. Além da
+                                    Competição esportiva, o evento tem caráter de celebração e evangelismo, é uma
+                                    oportunidade para jovens estarem em comunhão tanto dentro e fora do campo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3"
+                         data-aos="fade-up" data-aos-duration="1000">
+                        <div class="card border border-light-subtle rounded-3 shadow-sm transparent-card">
+                            <div class="card-body p-3 p-md-4 p-xl-5">
+                                <p style="text-align: justify;">Além da competição, o torneio também fortalece não
+                                    apenas o objetivo a vitória,
+                                    como também a comunidade e a promoção de valores cristãos, como
+                                    respeito, comunhão e trabalho em equipe.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3"
+                         data-aos="fade-up" data-aos-duration="1000">
+                        <div class="card border border-light-subtle rounded-3 shadow-sm transparent-card">
+                            <div class="card-body p-3 p-md-4 p-xl-5">
+                                <p style="text-align: justify;">Por isso, reúna sua equipe e venha participar desse
+                                    evento conosco! <strong> A 3ª
+                                        EDIÇÃO DO
+                                        TORNEIO ADVENTISTA DA PROMESSA PARQUE DAS LARANEIRAS ESTÁ CHEGANDO!!</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floating-button" data-aos="zoom-in" data-aos-duration="1000">
+                        <a href="{{ url_for('inscricao') }}" class="btn btn-info btn-lg">Inscreva-se</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
