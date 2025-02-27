@@ -89,6 +89,19 @@ label {
     /* Adiciona um leve sombreado */
 }
 
+#sidebar {
+    width: 280px;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.main-content {
+    margin-left: 50px;
+    /* Mesmo valor da largura da sidebar */
+    flex-grow: 1;
+    padding: 20px;
+}
+
 
 @media (max-width: 768px) {
     #sidebar {
@@ -112,6 +125,12 @@ label {
         min-height: 100vh;
         background-size: cover;
         background-position: center;
+    }
+
+    .main-content {
+        margin-left: 0;
+        /* Em telas menores, o conteúdo deve ocupar toda a largura */
+        width: 100%;
     }
 
     .menu-btn {
