@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash, jsonify, send_from_directory
-from flask_login import login_required, current_user, login_user
+from flask_login import login_required, current_user, login_user, logout_user
 from src import app, bcrypt, database
 from src.models import TimesInscritos, ComprovantesPagamento
 from src.forms import FormInscricaoTorneio, FormLoginTime
@@ -169,3 +169,11 @@ def upload_comprovante():
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+
+@app.route('/sair')
+@login_required
+def sair():
+    logout_user()
+    flash('Faça o Login para continuar', 'alert-success')
+    return redirect(url_for('login'))
