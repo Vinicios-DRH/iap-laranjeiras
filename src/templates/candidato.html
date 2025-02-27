@@ -34,7 +34,11 @@
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Sair</a></li>
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a class="dropdown-item" href="{{ url_for('sair') }}">Sair</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
