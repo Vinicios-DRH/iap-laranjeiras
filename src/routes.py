@@ -41,7 +41,8 @@ def login():
     form_login = FormLoginTime()
 
     if form_login.validate_on_submit() and 'botao_submit_login' in request.form:
-        user = TimesInscritos.query.filter_by(email=form_login.email.data).first()
+        user = TimesInscritos.query.filter_by(
+            email=form_login.email.data).first()
 
         if user and bcrypt.check_password_hash(user.senha, form_login.senha.data):
             login_user(user, remember=form_login.lembrar_dados.data)
@@ -62,7 +63,8 @@ def inscricao():
 
     if form_inscricao.validate_on_submit():
         print("Formulário validado e enviado!")
-        senha_cript = bcrypt.generate_password_hash(form_inscricao.telefone_responsavel.data).decode('utf-8')
+        senha_cript = bcrypt.generate_password_hash(
+            form_inscricao.telefone_responsavel.data).decode('utf-8')
         print(f"Senha gerada: {senha_cript}")
         time_inscrito = TimesInscritos(nome_responsavel=form_inscricao.nome_responsavel.data,
                                        email=form_inscricao.email.data,
@@ -110,10 +112,16 @@ def candidato():
         form_inscricao.jogador_9.data = time.jogador_9
         form_inscricao.jogador_10.data = time.jogador_10
 
-    return render_template('candidato.html', form_inscricao=form_inscricao)
+    chave_pix_parcela = "00020101021126360014br.gov.bcb.pix0114+55929928645065204000053039865406100.005802BR5925LUIS WELITON OLIVEIRA TEI6009SAO PAULO622905251JN13NE88JY0EQYHYMM05R30C6304787B"
+
+    chave_pix_integral = "00020101021126360014br.gov.bcb.pix0114+55929928645065204000053039865406200.005802BR5925LUIS WELITON OLIVEIRA TEI6009SAO PAULO622905251JN13Q7DF7XA9E4JPA35CTA0F6304641D"
+
+    return render_template('candidato.html', form_inscricao=form_inscricao, chave_pix_parcela=chave_pix_parcela,
+                           chave_pix_integral=chave_pix_integral)
 
 
-ALLOWED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png'}  # Defina as extensões permitidas
+# Defina as extensões permitidas
+ALLOWED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png'}
 
 
 def allowed_file(filename):
