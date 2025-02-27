@@ -35,7 +35,6 @@ def get_user_ip():
 def login():
     flash('Sua senha é seu número de telefone', 'alert-info')
     if current_user.is_authenticated:
-        flash('Você já está logado.', 'alert-info')
         return redirect(url_for('candidato'))
 
     form_login = FormLoginTime()
@@ -46,7 +45,6 @@ def login():
 
         if user and bcrypt.check_password_hash(user.senha, form_login.senha.data):
             login_user(user, remember=form_login.lembrar_dados.data)
-            flash('Login feito com sucesso!', 'alert-success')
             return redirect(url_for('candidato'))
 
         else:
